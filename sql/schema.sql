@@ -1,0 +1,39 @@
+-- schema.sql — Documents the SQLite database structure
+-- The DB is created programmatically from the CSV; this file is for reference.
+
+CREATE TABLE IF NOT EXISTS applications (
+    SK_ID_CURR          INTEGER PRIMARY KEY,
+    TARGET              INTEGER,          -- 1=default, 0=no default
+    CODE_GENDER         TEXT,
+    FLAG_OWN_CAR        TEXT,
+    FLAG_OWN_REALTY     TEXT,
+    CNT_CHILDREN        INTEGER,
+    AMT_INCOME_TOTAL    REAL,
+    AMT_CREDIT          REAL,
+    AMT_ANNUITY         REAL,
+    AMT_GOODS_PRICE     REAL,
+    NAME_CONTRACT_TYPE  TEXT,
+    NAME_INCOME_TYPE    TEXT,
+    NAME_EDUCATION_TYPE TEXT,
+    NAME_FAMILY_STATUS  TEXT,
+    NAME_HOUSING_TYPE   TEXT,
+    DAYS_BIRTH          INTEGER,
+    DAYS_EMPLOYED       INTEGER,
+    DAYS_REGISTRATION   REAL,
+    DAYS_ID_PUBLISH     INTEGER,
+    FLAG_MOBIL          INTEGER,
+    FLAG_EMP_PHONE      INTEGER,
+    FLAG_WORK_PHONE     INTEGER,
+    FLAG_CONT_MOBILE    INTEGER,
+    FLAG_PHONE          INTEGER,
+    FLAG_EMAIL          INTEGER,
+    CNT_FAM_MEMBERS     REAL,
+    REGION_RATING_CLIENT        INTEGER,
+    REGION_RATING_CLIENT_W_CITY INTEGER,
+    HOUR_APPR_PROCESS_START     INTEGER,
+    EXT_SOURCE_1        REAL,
+    EXT_SOURCE_2        REAL,
+    EXT_SOURCE_3        REAL,
+    DAYS_LAST_PHONE_CHANGE REAL,
+    AMT_REQ_CREDIT_BUREAU_YEAR REAL
+);
