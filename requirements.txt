@@ -21,3 +21,4 @@ groq==0.9.0
 
 # Utilities
 python-dotenv==1.0.1
+kaggle==1.6.12
