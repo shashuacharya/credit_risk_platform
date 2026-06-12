@@ -31,16 +31,16 @@ def download_dataset():
     path = os.path.join(DATA_DIR, "application_train.csv")
     if not os.path.exists(path):
         try:
-            os.environ["KAGGLE_TOKEN"] = st.secrets["KAGGLE_TOKEN"]
-            import subprocess
-            subprocess.run([
-                "kaggle", "competitions", "download",
-                "-c", "home-credit-default-risk",
-                "--path", DATA_DIR
-            ], env={**os.environ, "KAGGLE_TOKEN": st.secrets["KAGGLE_TOKEN"]})
-            os.system(f"unzip {DATA_DIR}/home-credit-default-risk.zip -d {DATA_DIR}/")
+            import gdown
+            os.makedirs(DATA_DIR, exist_ok=True)
+            file_id = "1NaKzcZs-6RBY_Rfqdb7WIfWs8UEuI1Ar"
+            url = f"https://drive.google.com/uc?id={file_id}"
+            gdown.download(url, path, quiet=False)
+            logger.info("Dataset downloaded successfully from Google Drive.")
         except Exception as e:
             logger.error(f"Failed to download dataset: {e}")
+
+download_dataset()
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
