@@ -31,22 +31,16 @@ def download_dataset():
     path = os.path.join(DATA_DIR, "application_train.csv")
     if not os.path.exists(path):
         try:
-            os.environ["KAGGLE_USERNAME"] = st.secrets["KAGGLE_USERNAME"]
-            os.environ["KAGGLE_KEY"] = st.secrets["KAGGLE_KEY"]
-            import kaggle
-            kaggle.api.authenticate()
-            os.makedirs(DATA_DIR, exist_ok=True)
-            kaggle.api.competition_download_files(
-                "home-credit-default-risk",
-                path=DATA_DIR,
-                quiet=False
-            )
+            os.environ["KAGGLE_TOKEN"] = st.secrets["KAGGLE_TOKEN"]
+            import subprocess
+            subprocess.run([
+                "kaggle", "competitions", "download",
+                "-c", "home-credit-default-risk",
+                "--path", DATA_DIR
+            ], env={**os.environ, "KAGGLE_TOKEN": st.secrets["KAGGLE_TOKEN"]})
             os.system(f"unzip {DATA_DIR}/home-credit-default-risk.zip -d {DATA_DIR}/")
-            logger.info("Dataset downloaded successfully.")
         except Exception as e:
             logger.error(f"Failed to download dataset: {e}")
-
-download_dataset()
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
